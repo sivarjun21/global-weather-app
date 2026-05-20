@@ -74,9 +74,9 @@ function Home() {
         currentDate: cityTime.toLocaleDateString(
           "en-US",
           {
-            weekday: "long",
+            weekday: "short",
             year: "numeric",
-            month: "long",
+            month: "short",
             day: "numeric",
           }
         ),
@@ -162,7 +162,7 @@ function Home() {
 
     }
   };
-
+  
 
   return (
 
