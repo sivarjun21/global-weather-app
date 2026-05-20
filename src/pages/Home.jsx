@@ -20,6 +20,10 @@ function Home() {
 
   const [loading, setLoading] = useState(false);
 
+  /* ---------------- TEMPERATURE UNIT ---------------- */
+
+  const [unit, setUnit] = useState("C");
+
 
   /* ---------------- HANDLE CITY ---------------- */
 
@@ -50,12 +54,12 @@ function Home() {
 
       const timezoneOffset = weatherData.timezone;
 
-      // UTC time
+      // UTC Time
       const utc =
         new Date().getTime() +
         new Date().getTimezoneOffset() * 60000;
 
-      // City local time
+      // City Local Time
       const cityTime = new Date(
         utc + timezoneOffset * 1000
       );
@@ -162,7 +166,7 @@ function Home() {
 
     }
   };
-  
+
 
   return (
 
@@ -182,6 +186,8 @@ function Home() {
 
       <SearchBar
         onCitySelect={handleCitySelect}
+        unit={unit}
+        setUnit={setUnit}
       />
 
 
@@ -202,12 +208,18 @@ function Home() {
 
       {/* ---------------- WEATHER CARD ---------------- */}
 
-      <WeatherCard weather={weather} />
+      <WeatherCard
+        weather={weather}
+        unit={unit}
+      />
 
 
       {/* ---------------- FORECAST ---------------- */}
 
-      <Forecast forecast={forecast} />
+      <Forecast
+        forecast={forecast}
+        unit={unit}
+      />
 
     </div>
   );

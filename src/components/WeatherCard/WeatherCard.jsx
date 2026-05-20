@@ -1,32 +1,62 @@
 import "./WeatherCard.css";
 
-function WeatherCard({ weather }) {
+function WeatherCard({ weather, unit }) {
 
   if (!weather) {
+
     return (
+
       <div className="weather-card empty-card">
+
         <h2>🌍 Select a city</h2>
+
         <p>Search or click a city on the globe</p>
+
       </div>
+
     );
   }
 
+  /* ---------------- TEMPERATURE CONVERTER ---------------- */
+
+  const convertTemp = (temp) => {
+
+    if (unit === "F") {
+
+      return Math.round((temp * 9) / 5 + 32);
+    }
+
+    return Math.round(temp);
+  };
+
+
   return (
+
     <div className="weather-card">
 
-      {/* City Name */}
+      {/* ---------------- CITY NAME ---------------- */}
+
       <h2 className="city-name">
-        📍 {weather.customCityName || weather.name}
-        <div className="weather-date">
 
-          <p>{weather.currentDate}</p>
+        📍 {weather.customCityName || weather.name},{" "}
+        {weather.customCountry || weather.sys.country}
 
-          <p>{weather.currentTime}</p>
-
-        </div>
       </h2>
 
-      {/* Weather Icon */}
+
+      {/* ---------------- DATE & TIME ---------------- */}
+
+      <div className="weather-date">
+
+        <p>{weather.currentDate}</p>
+
+        <p>{weather.currentTime}</p>
+
+      </div>
+
+
+      {/* ---------------- WEATHER ICON ---------------- */}
+
       <div className="weather-icon">
 
         <img
@@ -36,32 +66,63 @@ function WeatherCard({ weather }) {
 
       </div>
 
-      {/* Temperature */}
+
+      {/* ---------------- TEMPERATURE ---------------- */}
+
       <h1 className="temperature">
-        {Math.round(weather.main.temp)}°C
+
+        {convertTemp(weather.main.temp)}°{unit}
+
       </h1>
 
-      {/* Weather Condition */}
+
+      {/* ---------------- CONDITION ---------------- */}
+
       <p className="weather-condition">
+
         {weather.weather[0].main}
+
       </p>
 
-      {/* Weather Details */}
+
+      {/* ---------------- DETAILS ---------------- */}
+
       <div className="weather-details">
 
+        {/* Humidity */}
+
         <div className="detail-box">
+
           <span>💧 Humidity</span>
+
           <h3>{weather.main.humidity}%</h3>
+
         </div>
 
+
+        {/* Wind */}
+
         <div className="detail-box">
+
           <span>🌬 Wind</span>
+
           <h3>{weather.wind.speed} m/s</h3>
+
         </div>
 
+
+        {/* Feels Like */}
+
         <div className="detail-box">
+
           <span>🌡 Feels Like</span>
-          <h3>{Math.round(weather.main.feels_like)}°C</h3>
+
+          <h3>
+
+            {convertTemp(weather.main.feels_like)}°{unit}
+
+          </h3>
+
         </div>
 
       </div>

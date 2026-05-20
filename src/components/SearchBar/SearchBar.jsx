@@ -2,7 +2,11 @@ import { useState } from "react";
 
 import "./SearchBar.css";
 
-function SearchBar({ onCitySelect }) {
+function SearchBar({
+  onCitySelect,
+  unit,
+  setUnit
+}) {
 
   const [query, setQuery] = useState("");
 
@@ -25,8 +29,7 @@ function SearchBar({ onCitySelect }) {
 
       const response = await fetch(
 
-        `https://api.openweathermap.org/geo/1.0/direct?q=${value}&limit=5&appid=${
-          import.meta.env.VITE_WEATHER_API_KEY
+        `https://api.openweathermap.org/geo/1.0/direct?q=${value}&limit=5&appid=${import.meta.env.VITE_WEATHER_API_KEY
         }`
 
       );
@@ -41,6 +44,7 @@ function SearchBar({ onCitySelect }) {
 
     }
   };
+
 
   /* ---------------- SELECT CITY ---------------- */
 
@@ -64,11 +68,25 @@ function SearchBar({ onCitySelect }) {
     setSuggestions([]);
   };
 
+
+  /* ---------------- HANDLE ENTER ---------------- */
+
+  const handleEnter = () => {
+
+    if (suggestions.length > 0) {
+
+      handleSelect(suggestions[0]);
+    }
+  };
+
+
   return (
 
     <div className="search-wrapper">
 
       <div className="search-bar">
+
+        {/* ---------------- SEARCH INPUT ---------------- */}
 
         <input
           type="text"
@@ -83,27 +101,62 @@ function SearchBar({ onCitySelect }) {
 
             if (e.key === "Enter") {
 
-              if (suggestions.length > 0) {
-
-                handleSelect(suggestions[0]);
-              }
+              handleEnter();
             }
-        }}
+          }}
         />
 
-        <button>
-          Search
-        </button>
+
+        {/* ---------------- TOGGLE BUTTON ---------------- */}
+
+        <div className="checkbox-wrapper-8">
+
+          <input
+            type="checkbox"
+
+            id="temperature-toggle"
+
+            className="tgl tgl-skewed"
+
+            checked={unit === "F"}
+
+            onChange={() => {
+
+              setUnit(
+                unit === "C"
+                  ? "F"
+                  : "C"
+              );
+            }}
+          />
+
+        <label
+            htmlFor="temperature-toggle"
+            className="tgl-btn"
+          >
+
+          <span className="celsius">
+            °C
+          </span>
+
+          <span className="fahrenheit">
+            °F
+          </span>
+
+        </label>
+
+        </div>
 
       </div>
 
-      {/* Suggestions */}
+
+      {/* ---------------- SUGGESTIONS ---------------- */}
 
       {
         suggestions.length > 0 && (
 
           <div className="suggestions-box">
-            
+
             {
               suggestions.map((city, index) => (
 
