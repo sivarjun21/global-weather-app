@@ -112,7 +112,7 @@ src/
 ## 1️⃣ Clone Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/global-weather-app.git
+git clone https://github.com/sivarjun21/global-weather-app.git
 ```
 
 ---
@@ -144,7 +144,7 @@ Create a file named:
 Add:
 
 ```env
-VITE_WEATHER_API_KEY=YOUR_API_KEY
+VITE_WEATHER_API_KEY=YOUR_API_KEY (Go to the website and get your own API key)
 ```
 
 ---
@@ -161,16 +161,7 @@ npm run dev
 
 Get your free API key from:
 
-:contentReference[oaicite:0]{index=0}
-
----
-
-# 📸 Screenshots
-
-## 🌍 Main Interface
-- Interactive globe
-- Real-time weather
-- Dynamic forecast cards
+:https://openweathermap.org/api
 
 ---
 
