@@ -63,6 +63,11 @@ Displays:
 
 ---
 
+<img width="1894" height="860" alt="image" src="https://github.com/user-attachments/assets/d3e294d5-11f6-43f6-a61a-770c4851de72" />
+
+<img width="1882" height="860" alt="image" src="https://github.com/user-attachments/assets/e6aef44d-be3c-49a0-b011-e398ccafd4be" />
+
+
 # 🛠️ Tech Stack
 
 ## Frontend
