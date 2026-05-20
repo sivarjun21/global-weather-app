@@ -1,0 +1,107 @@
+.loader-container {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 2000;
+}
+
+/* Glow Background */
+.loader-glow {
+  position: absolute;
+
+  width: 140px;
+  height: 140px;
+
+  border-radius: 50%;
+
+  background: rgba(0, 255, 255, 0.15);
+
+  filter: blur(40px);
+
+  animation: glowPulse 2s infinite ease-in-out;
+}
+
+/* Spinner */
+.loader-spinner {
+  width: 80px;
+  height: 80px;
+
+  border-radius: 50%;
+
+  border: 5px solid rgba(255, 255, 255, 0.1);
+  border-top: 5px solid #00ffff;
+
+  animation: spin 1s linear infinite;
+
+  z-index: 2;
+}
+
+/* Loading Text */
+.loader-text {
+  margin-top: 24px;
+
+  color: white;
+
+  font-size: 18px;
+  letter-spacing: 1px;
+
+  z-index: 2;
+
+  animation: textFade 1.5s infinite ease-in-out;
+}
+
+/* Spinner Rotation */
+@keyframes spin {
+
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Glow Animation */
+@keyframes glowPulse {
+
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+}
+
+/* Text Fade */
+@keyframes textFade {
+
+  0% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.5;
+  }
+}
